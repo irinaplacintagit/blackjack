@@ -33,14 +33,14 @@ not exceed 21. At the end of the game the player with the total closest to 21 wi
 	dealt a “hand” of two cards from the top of the deck.
 
 2.	Each player then takes turns to play. In a turn, the following rules apply:
-	⋅⋅1.	If the player's total is less than 17, they **"hit"** (i.e. get dealt another card from the top of the deck).
-	⋅⋅2.	If the player's total is 17 or greater, they **"stick"** (i.e. don't get dealt another card).
-	⋅⋅3.	If the player's total is greater than 21, they **"go bust"** (i.e. are ejected from the game).
+  1.	If the player's total is less than 17, they **"hit"** (i.e. get dealt another card from the top of the deck).
+  2.	If the player's total is 17 or greater, they **"stick"** (i.e. don't get dealt another card).
+  3.	If the player's total is greater than 21, they **"go bust"** (i.e. are ejected from the game).
 
 3.	The game finishes if:
-	⋅⋅1.	All players "stick" in a round.
-	⋅⋅2.	Any player hits 21 exactly.
-	⋅⋅3.	There is only one player is left in the game because all others have "gone bust".
+  1.	All players "stick" in a round.
+  2.	Any player hits 21 exactly.
+  3.	There is only one player is left in the game because all others have "gone bust".
 
 4.	At the end of the game, if the game has not finished due to a player hitting 21, the player with the total closest 
 	(but still under) 21 wins.
@@ -54,10 +54,10 @@ not exceed 21. At the end of the game the player with the total closest to 21 wi
 
 3.	Flesh out the skeleton application so that it plays a game of blackjack using the domain developed in stage 1, and 
 	in accordance with the game rules stated above.
-	⋅⋅1.	This should be runnable as a simple command line application.
-	⋅⋅2.	The application should log the steps taken in the game by each player, as well as the results of their actions, to the
+  1.	This should be runnable as a simple command line application.
+  2.	The application should log the steps taken in the game by each player, as well as the results of their actions, to the
 		console.
-	⋅⋅3.	The application should finally state which player in the game is considered to have won to the console.
+  3.	The application should finally state which player in the game is considered to have won to the console.
 
 4.	Alter the application so that the number of players can be adjusted from a command line parameter. The number of players 
 	should be checked to make sure it is greater than 1, and less than or equal to 6. An error should be reported if this 
