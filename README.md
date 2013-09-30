@@ -1,11 +1,6 @@
 #BLACK JACK CODING TEST
  
-##CONCEPT
-The concept here is to get the interviewee to develop a simple java application that simulates the playing of a game of Blackjack (see below for rules) for three players. The repository contains a skeleton implementation of the application, and we are interested in how the applicants do in implementing a solution that addresses the tasks given at the end of the document.
-We ask that the applicants take between 1.5 and 2 hours to perform the test – we do not expect applicants to complete all the tasks in the allotted time, we are more interested in how an applicant goes about solving the simple tasks mentioned. 
-
-**Applicants are asked to follow the best practice they can in terms of creating their putative solutions.**
-Also, applicants are politely asked not to disseminate the details of this coding test – either this document or the contents of the bitbucket repository – to others, or to discuss the details of the coding test with others.
+**Applicants are politely asked not to disseminate or discuss the details of this coding test to others.**
 
 ##THE BLACK JACK GAME
 ###DOMAIN MODEL
@@ -34,7 +29,14 @@ Assume there are 3 players. The aim of the game is to collect cards so that the 
 
 4.	At the end of the game, if the game has not finished due to a player hitting 21, the player with the total closest (but still under) 21 wins.
 
-##TASKS
+##CODING TEST
+
+* Please progress through the following tasks and get as far as you can within 1.5 to 2 hours.
+* We are interested in both Quality as well as Quantity - the quality of your solution is as important how far through the test you get.
+* Your code should be as if you were developing this solution in a 'professional' environment. 
+* Applicants are asked to follow the best practice they can in terms of creating their putative solutions.
+
+###TASKS
 
 1.	Make an account on bitbucket (it’s free) and **FORK** the bitbucket Blackjack-coding-test repository to make your own copy on which you will implement your solution.
 
