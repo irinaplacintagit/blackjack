@@ -1,8 +1,8 @@
 #BLACK JACK CODING TEST
  
 ##CONCEPT
-The concept here is to get the interviewee to develop a simple java application that simulates the playing of a game of Blackjack (see below for rules) for three players. A repository is available in [bitbucket](https://bitbucket.org/thomsonreuters/blackjack-code-test/) at contains a skeleton implementation of the application, and we are interested in how the applicants do in implementing a solution that addresses the tasks given at the end of the document.
-We ask that the applicants take between 1 and 1.5 hours to perform the test – we do not expect applicants to complete all the tasks in the allotted time, we are more interested in how an applicant goes about solving the simple tasks mentioned. 
+The concept here is to get the interviewee to develop a simple java application that simulates the playing of a game of Blackjack (see below for rules) for three players. The repository contains a skeleton implementation of the application, and we are interested in how the applicants do in implementing a solution that addresses the tasks given at the end of the document.
+We ask that the applicants take between 1.5 and 2 hours to perform the test – we do not expect applicants to complete all the tasks in the allotted time, we are more interested in how an applicant goes about solving the simple tasks mentioned. 
 
 **Applicants are asked to follow the best practice they can in terms of creating their putative solutions.**
 Also, applicants are politely asked not to disseminate the details of this coding test – either this document or the contents of the bitbucket repository – to others, or to discuss the details of the coding test with others.
@@ -52,4 +52,4 @@ Assume there are 3 players. The aim of the game is to collect cards so that the 
 
 6.	Add extra capability to the application so that the game rules can be altered so that the game being simulated (blackjack, poker, rummy) can be chosen at run-time from any game that is playable with a single deck of cards and 2 or more players.
 
-7.	Finally, give me (**thomsonreuters**) access to your fork of the coding test (using Administration >> Access Management) so that I can review your solutions.
+7.	Finally, give us (**thomsonreuters**) access to your fork of the coding test (using Administration >> Access Management) so that we can review your solutions.
