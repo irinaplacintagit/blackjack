@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sun.istack.internal.logging.Logger;
 
+import codingtest.domain.Card;
 import codingtest.domain.Deck;
 import codingtest.domain.Player;
 import codingtest.domain.RuleResult;
@@ -27,10 +28,10 @@ public class BlackjackService {
 	}
 	
 	// give 2 cards to each of the players
-	public void initPlayers() {
+	public void initPlayers(int noPlayers) {
 		players = new ArrayList<>();
 		logger.info("Players: ");
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < noPlayers; i++) {
 			Player player = new Player("Player " + i);
 			players.add(player);
 			logger.info("[" + i + 1 + "]:" + player.getName());
@@ -38,7 +39,9 @@ public class BlackjackService {
 		logger.info("Players are given 2 cards each...");
 		for (int j = 0 ; j < 2; j++) {
 			for (Player player : players) {
-				player.addCard(deck.dealCard());
+				Card card = deck.dealCard();
+				player.addCard(card);
+				logger.info(player.getName() + " " + card.getRank());
 			}
 		}
 	}
@@ -69,8 +72,9 @@ public class BlackjackService {
 		RuleResult result = GameRound.play(player);
 		switch (result) {
 			case HIT:
-				player.addCard(deck.dealCard());
-				logger.info(player.getName() + " HIT - gets another card");
+				Card card = deck.dealCard();
+				player.addCard(card);
+				logger.info(player.getName() + " HIT - gets another card: " + card.getRank());
 				playRound(player);
 				break;
 			case STICK:
@@ -79,6 +83,7 @@ public class BlackjackService {
 			case GO_BUST:
 				logger.info(player.getName() + " GO_BUST - bye bye");
 				players.remove(player);
+				break;
 			case WIN:
 				logger.info(player.getName() + " HITS 21 and WINNNNS");
 				System.exit(0);
