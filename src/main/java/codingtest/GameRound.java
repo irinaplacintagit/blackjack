@@ -3,7 +3,7 @@ package codingtest;
 import codingtest.domain.Player;
 import codingtest.domain.RuleResult;
 
-public class RoundRule {
+public class GameRound {
 	
 	public static RuleResult play(Player player) {
 		int sum = player.getCardsSum();
