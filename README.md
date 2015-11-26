@@ -13,9 +13,9 @@ In the game Blackjack, the cards have the following values:
 3. Ace: 11. 
 
 ###GAME RULES
-Assume there are 3 players. The aim of the game is to collect cards so that the total of an individual playerâ€™s cards does not exceed 21. At the end of the game the player with the total closest to 21 wins.
+Assume there are 3 players. The aim of the game is to collect cards so that the total of an individual player’s cards does not exceed 21. At the end of the game the player with the total closest to 21 wins.
 
-1.	At the start of the game, the deck is shuffled (i.e. the order of the cards is randomized) and each player is immediately dealt a â€œhandâ€ of two cards from the top of the deck.
+1.	At the start of the game, the deck is shuffled (i.e. the order of the cards is randomized) and each player is immediately dealt a “hand” of two cards from the top of the deck.
 
 2.	Each player then takes turns to play. In a turn, the following rules apply:
 	1.	If the player's total is less than 17, they **"hit"** (i.e. get dealt another card from the top of the deck).
@@ -38,7 +38,7 @@ Assume there are 3 players. The aim of the game is to collect cards so that the 
 
 ###TASKS
 
-1.	Make an account on bitbucket (itâ€™s free) and **FORK** the bitbucket Blackjack-coding-test repository to make your own copy on which you will implement your solution.
+1.	Make an account on bitbucket (it’s free) and **FORK** the bitbucket Blackjack-coding-test repository to make your own copy on which you will implement your solution.
 
 2.	Using best Java development practice and appropriate language constructs, implement the domain model mentioned above. 
 
@@ -50,8 +50,10 @@ Assume there are 3 players. The aim of the game is to collect cards so that the 
 
 4.	Alter the application so that the number of players can be adjusted from a command line parameter. The number of players should be checked to make sure it is greater than 1, and less than or equal to 6. An error should be reported if this is not the case. The default for the application, if this parameter is not specified, should be considered to be 3.
 
-5.	Add extra capability to the application so that a selection of different â€œshufflingâ€ mechanisms can be chosen from a list of real-world algorithms (Riffle shuffle, Pharoah/Faro Shuffle, etc). The applicant is not requested to implement the detail of these different mechanisms, just adjust the application to allow the shuffling mechanism to be chosen at run-time.
+5.	Add extra capability to the application so that a selection of different “shuffling” mechanisms can be chosen from a list of real-world algorithms (Riffle shuffle, Pharoah/Faro Shuffle, etc). The applicant is not requested to implement the detail of these different mechanisms, just adjust the application to allow the shuffling mechanism to be chosen at run-time.
 
 6.	Add extra capability to the application so that the game rules can be altered so that the game being simulated (blackjack, poker, rummy) can be chosen at run-time from any game that is playable with a single deck of cards and 2 or more players.
 
 7.	Finally, give us (**thomsonreuters**) access to your fork of the coding test (using Administration >> Access Management) so that we can review your solutions.
+
+Hello World!
