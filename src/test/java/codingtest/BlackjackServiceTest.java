@@ -44,4 +44,11 @@ public class BlackjackServiceTest {
 		Player player1 = blackjackService.getPlayers().get(0);
 		blackjackService.playRound(player1);
 	}
+	
+	@Test
+	public void testPlay() {
+		blackjackService.initDeck();
+		blackjackService.initPlayers(3);
+		blackjackService.play();
+	}
 }

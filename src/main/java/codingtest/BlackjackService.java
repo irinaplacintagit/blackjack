@@ -61,10 +61,13 @@ public class BlackjackService {
 		}
 		if (allStick) {
 			logger.info("All STICK, game ends, nobody wins!");
+			System.exit(0);
 		}
 		if (players.size() == 1) {
 			logger.info(players.get(0).getName() + " is the only one left and wins the game!");
+			System.exit(0);
 		}
+		play();
 	}
 	
 	public RuleResult playRound(Player player) {
