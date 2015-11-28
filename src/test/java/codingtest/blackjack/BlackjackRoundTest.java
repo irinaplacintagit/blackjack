@@ -1,24 +1,24 @@
-package codingtest;
+package codingtest.blackjack;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import codingtest.blackjack.GameRound;
+import codingtest.blackjack.BlackjackRound;
 import codingtest.domain.Card;
 import codingtest.domain.Player;
 import codingtest.domain.Rank;
-import codingtest.domain.RuleResult;
+import codingtest.domain.BlackjackRule;
 import codingtest.domain.Suit;
 
-public class GameRoundTest {
+public class BlackjackRoundTest {
 
 	@Test
 	public void testPlayHIT() {
 		Player player = new Player("Fred Flinstones");
 		player.addCard(new Card(Suit.CLUB, Rank.ACE));
-		assertEquals(RuleResult.HIT, GameRound.play(player));
+		assertEquals(BlackjackRule.HIT, BlackjackRound.play(player));
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ public class GameRoundTest {
 		Player player = new Player("Fred Flinstones");
 		player.addCard(new Card(Suit.CLUB, Rank.ACE));
 		player.addCard(new Card(Suit.CLUB, Rank.NINE));
-		assertEquals(RuleResult.STICK, GameRound.play(player));
+		assertEquals(BlackjackRule.STICK, BlackjackRound.play(player));
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class GameRoundTest {
 		Player player = new Player("Fred Flinstones");
 		player.addCard(new Card(Suit.CLUB, Rank.ACE));
 		player.addCard(new Card(Suit.CLUB, Rank.TEN));
-		assertEquals(RuleResult.WIN, GameRound.play(player));
+		assertEquals(BlackjackRule.WIN, BlackjackRound.play(player));
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class GameRoundTest {
 		Player player = new Player("Fred Flinstones");
 		player.addCard(new Card(Suit.CLUB, Rank.ACE));
 		player.addCard(new Card(Suit.CLUB, Rank.ACE));
-		assertEquals(RuleResult.GO_BUST, GameRound.play(player));
+		assertEquals(BlackjackRule.GO_BUST, BlackjackRound.play(player));
 	}
 
 }

@@ -3,6 +3,11 @@ package codingtest.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Irina
+ *  
+ * This is the domain class that represents a player in a card game.
+ */
 public class Player {
 	private String name;
 	private List<Card> hand;

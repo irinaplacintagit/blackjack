@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 import codingtest.blackjack.BlackjackGame;
 import codingtest.domain.GameType;
 
+/**
+ * @author Irina
+ *
+ */
 @Component
 public class GameFactory {
 	

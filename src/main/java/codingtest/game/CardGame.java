@@ -19,24 +19,35 @@ import codingtest.domain.GameType;
 @Component
 public class CardGame {
 	
-    /**
-     * Main. Plays a card game from a command line interface.
-     * @param args the arguments to the game
-     */
 	@Autowired 
 	private GameFactory gameFactory;
 	
+    /**
+     * Main. Plays a card game from a command line interface.
+     * @param args the arguments to the game
+     * 
+     * PARAM[0]: number of players; if none specified, default to 3
+     * PARAM[1]: deck shuffling type; if none specified or not valid, default to basic shuffle
+     * PARAM[2]: game type; if none specified or not valid, default to blackjack
+     */
     public static void main(String[] args) {
-    	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-    	CardGame game = context.getBean(CardGame.class);
-    	
-    	int noPlayers = game.validatePlayers(args.length > 0 ? args[0] : "");
-    	DeckShuffle shuffleType = game.validateDeck(args.length > 1 ? args[1] : "");
-    	GameType gameType = game.validateGameType(args.length > 2 ? args[2] : "");
-    	
-    	game.gameFactory.getGame(gameType).playGame(noPlayers, shuffleType);    	
+    	ApplicationContext context = null;
+    	try {
+	    	context = new ClassPathXmlApplicationContext("applicationContext.xml");
+	    	CardGame game = context.getBean(CardGame.class);
+	    	
+	    	int noPlayers = game.validatePlayers(args.length > 0 ? args[0] : "");
+	    	DeckShuffle shuffleType = game.validateDeck(args.length > 1 ? args[1] : "");
+	    	GameType gameType = game.validateGameType(args.length > 2 ? args[2] : "");
+	    	
+	    	game.gameFactory.getGame(gameType).playGame(noPlayers, shuffleType);    
+    	}
+    	finally {
+    		((ClassPathXmlApplicationContext)context).close();
+    	}
     }
 
+    /************************ VALIDATION ******************************/
 	private int validatePlayers(String noPlayers) {
     	if (StringUtils.isEmpty(noPlayers)) {
     		return 3;

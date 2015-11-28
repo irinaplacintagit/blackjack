@@ -3,64 +3,50 @@ package codingtest.blackjack;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.sun.istack.internal.logging.Logger;
-
+import codingtest.domain.BlackjackRule;
 import codingtest.domain.Card;
-import codingtest.domain.Deck;
-import codingtest.domain.DeckShuffle;
 import codingtest.domain.Player;
-import codingtest.domain.RuleResult;
+import codingtest.game.GameService;
 
+/**
+ * @author Irina
+ *
+ * Blackjack service that play rounds and play game E2E
+ */
 @Service
-public class BlackjackService {
-	private static final Logger logger = Logger.getLogger(BlackjackService.class);
+public class BlackjackService extends GameService {
+	private static final Logger logger = LogManager.getLogger(BlackjackService.class);
+
 	
-	private Deck deck;
-	private List<Player> players;
-	
-	/*************************INIT GAME ******************************/
-	public void initDeck(DeckShuffle shuffle) {
-		deck = new Deck();
-		deck.init();
-		switch (shuffle) {
-			case SHUFFLE: deck.shuffle(); break;
-			case RIFFLE:
-			case PHAROAH_FARO:
-			default: deck.shuffle();
-		}
-		logger.info("Shuffling cards ...");
-	}
-	
-	// give 2 cards to each of the players
-	public void initPlayers(int noPlayers) {
-		players = new ArrayList<>();
-		logger.info("Players: ");
-		for (int i = 0; i < noPlayers; i++) {
-			Player player = new Player("Player " + i);
-			players.add(player);
-			logger.info("[" + i + 1 + "]:" + player.getName());
-		}
+	/**
+	 * Give 2 cards to each players
+	 * 
+	 * @param noPlayers
+	 */
+	public void dealInitialCards(int noPlayers) {
 		logger.info("Players are given 2 cards each...");
-		for (int j = 0 ; j < 2; j++) {
-			for (Player player : players) {
+		for (Player player : players) {
+			for (int j = 0; j < 2; j++) {
 				Card card = deck.dealCard();
 				player.addCard(card);
-				logger.info(player.getName() + " " + card.getRank());
+				logger.info(player.getName() + " gets card " + card.getRank() + "(" + card.getRank().getValue() + ")");
 			}
 		}
 	}
-
-	/*************************PLAY A ROUND ******************************/
+	
+	/*************************PLAY GAME ******************************/
 	public void play() {
-		List<RuleResult> roundResult = new ArrayList<>();
+		List<BlackjackRule> roundResult = new ArrayList<>();
 		for (int i = 0; i < players.size(); i++) {
 			roundResult.add(playRound(players.get(i)));
 		}
 		boolean allStick = true;
-		for (RuleResult result : roundResult) {
-			if(!result.equals(RuleResult.STICK)) {
+		for (BlackjackRule result : roundResult) {
+			if(!result.equals(BlackjackRule.STICK)) {
 				allStick = false;
 				break;
 			}
@@ -76,9 +62,10 @@ public class BlackjackService {
 		play();
 	}
 	
-	public RuleResult playRound(Player player) {
-		logger.info("Start round: ");
-		RuleResult result = GameRound.play(player);
+	/*************************PLAY ROUND ******************************/
+	public BlackjackRule playRound(Player player) {
+		logger.info("******************");
+		BlackjackRule result = BlackjackRound.play(player);
 		switch (result) {
 			case HIT:
 				Card card = deck.dealCard();
@@ -98,22 +85,5 @@ public class BlackjackService {
 				System.exit(0);
 		}
 		return result;
-	}
-	
-	/*******************************************************/
-	public Deck getDeck() {
-		return deck;
-	}
-
-	public void setDeck(Deck deck) {
-		this.deck = deck;
-	}
-
-	public List<Player> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(List<Player> players) {
-		this.players = players;
 	}
 }

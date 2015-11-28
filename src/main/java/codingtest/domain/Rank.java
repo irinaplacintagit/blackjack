@@ -1,5 +1,10 @@
 package codingtest.domain;
 
+/**
+ * @author Irina
+ *
+ * Enumeration that represents the Card rank types.
+ */
 public enum Rank {
 	TWO(2),
 	THREE(3),

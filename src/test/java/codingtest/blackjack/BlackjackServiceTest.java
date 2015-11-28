@@ -1,4 +1,4 @@
-package codingtest;
+package codingtest.blackjack;
 
 import static org.junit.Assert.assertEquals;
 

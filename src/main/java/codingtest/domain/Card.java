@@ -1,6 +1,8 @@
 package codingtest.domain;
 
 /**
+ * @author Irina
+ *  
  * This is the domain class that represents a card in a card game.
  */
 public class Card implements Comparable<Card>{

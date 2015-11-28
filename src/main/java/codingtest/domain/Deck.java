@@ -7,6 +7,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
+ * @author Irina 
+ * 
  * This is the class that represents a deck of cards in a card game.
  */
 public class Deck {
