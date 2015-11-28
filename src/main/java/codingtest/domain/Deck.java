@@ -34,6 +34,4 @@ public class Deck {
 	public Queue<Card> getDeck() {
 		return deck;
 	}
-	
-	
 }

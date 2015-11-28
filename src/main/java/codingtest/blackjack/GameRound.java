@@ -1,4 +1,4 @@
-package codingtest;
+package codingtest.blackjack;
 
 import codingtest.domain.Player;
 import codingtest.domain.RuleResult;

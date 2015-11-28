@@ -1,4 +1,4 @@
-package codingtest;
+package codingtest.blackjack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import com.sun.istack.internal.logging.Logger;
 
 import codingtest.domain.Card;
 import codingtest.domain.Deck;
+import codingtest.domain.DeckShuffle;
 import codingtest.domain.Player;
 import codingtest.domain.RuleResult;
 
@@ -20,10 +21,15 @@ public class BlackjackService {
 	private List<Player> players;
 	
 	/*************************INIT GAME ******************************/
-	public void initDeck() {
+	public void initDeck(DeckShuffle shuffle) {
 		deck = new Deck();
 		deck.init();
-		deck.shuffle();
+		switch (shuffle) {
+			case SHUFFLE: deck.shuffle(); break;
+			case RIFFLE:
+			case PHAROAH_FARO:
+			default: deck.shuffle();
+		}
 		logger.info("Shuffling cards ...");
 	}
 	
@@ -49,8 +55,8 @@ public class BlackjackService {
 	/*************************PLAY A ROUND ******************************/
 	public void play() {
 		List<RuleResult> roundResult = new ArrayList<>();
-		for (Player player: players) {
-			roundResult.add(playRound(player));
+		for (int i = 0; i < players.size(); i++) {
+			roundResult.add(playRound(players.get(i)));
 		}
 		boolean allStick = true;
 		for (RuleResult result : roundResult) {
@@ -71,7 +77,7 @@ public class BlackjackService {
 	}
 	
 	public RuleResult playRound(Player player) {
-		logger.info("Round: ");
+		logger.info("Start round: ");
 		RuleResult result = GameRound.play(player);
 		switch (result) {
 			case HIT:
