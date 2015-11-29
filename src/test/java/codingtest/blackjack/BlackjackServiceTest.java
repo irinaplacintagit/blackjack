@@ -1,6 +1,7 @@
 package codingtest.blackjack;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,6 +30,14 @@ public class BlackjackServiceTest {
 		blackjackService.initDeck(DeckShuffle.SHUFFLE);
 		blackjackService.initPlayers(3);
 		assertEquals(3, blackjackService.getPlayers().size());
+	}
+	
+	@Test
+	public void testDealInitialCards() {
+		blackjackService.initDeck(DeckShuffle.SHUFFLE);
+		blackjackService.initPlayers(3);
+		blackjackService.dealInitialCards(3);
+		assertEquals(46, blackjackService.getDeck().getDeck().size());
 		assertEquals(2, blackjackService.getPlayers().get(0).getHand().size());
 		assertEquals(2, blackjackService.getPlayers().get(0).getHand().size());
 		assertEquals(2, blackjackService.getPlayers().get(0).getHand().size());
@@ -38,14 +47,18 @@ public class BlackjackServiceTest {
 	public void testPlayRound() {
 		blackjackService.initDeck(DeckShuffle.SHUFFLE);
 		blackjackService.initPlayers(3);
+		blackjackService.dealInitialCards(3);
 		Player player1 = blackjackService.getPlayers().get(0);
 		blackjackService.playRound(player1);
+		assertTrue(player1.getHand().size() > 2);
 	}
 	
 	@Test
 	public void testPlay() {
 		blackjackService.initDeck(DeckShuffle.SHUFFLE);
 		blackjackService.initPlayers(3);
+		blackjackService.dealInitialCards(3);
 		blackjackService.play();
+		assertTrue(blackjackService.getDeck().getDeck().size() <= 46);
 	}
 }

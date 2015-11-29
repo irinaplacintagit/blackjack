@@ -1,10 +1,12 @@
 package codingtest.blackjack;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.runner.notification.RunListener;
 import org.springframework.stereotype.Service;
 
 import codingtest.domain.BlackjackRule;
@@ -38,11 +40,39 @@ public class BlackjackService extends GameService {
 		}
 	}
 	
+	/*************************PLAY ROUND ******************************/
+	public BlackjackRule playRound(Player player) {
+		logger.info("******************");
+		BlackjackRule result = BlackjackRound.play(player);
+		switch (result) {
+			case HIT:
+				Card card = deck.dealCard();
+				player.addCard(card);
+				logger.info(player.getName() + " HIT - gets another card: " + card.getRank());
+				return playRound(player);		
+			case STICK:
+				logger.info(player.getName() + " STICKS - doesn't get more cards");
+				break;
+			case GO_BUST:
+				logger.info(player.getName() + " GO_BUST - bye bye");
+				break;
+			case WIN:
+				logger.info(player.getName() + " HITS 21 and WINNNNS");
+		}
+		return result;
+	}
+	
 	/*************************PLAY GAME ******************************/
 	public void play() {
 		List<BlackjackRule> roundResult = new ArrayList<>();
-		for (int i = 0; i < players.size(); i++) {
-			roundResult.add(playRound(players.get(i)));
+		for (Iterator<Player> it = players.iterator(); it.hasNext(); ) {
+			BlackjackRule rule = playRound(it.next());
+			switch(rule) {
+				case WIN: return;
+				case GO_BUST: it.remove();
+				default: 
+			}
+			roundResult.add(rule);
 		}
 		boolean allStick = true;
 		for (BlackjackRule result : roundResult) {
@@ -53,37 +83,12 @@ public class BlackjackService extends GameService {
 		}
 		if (allStick) {
 			logger.info("All STICK, game ends, nobody wins!");
-			System.exit(0);
+			return;
 		}
 		if (players.size() == 1) {
 			logger.info(players.get(0).getName() + " is the only one left and wins the game!");
-			System.exit(0);
+			return;
 		}
 		play();
-	}
-	
-	/*************************PLAY ROUND ******************************/
-	public BlackjackRule playRound(Player player) {
-		logger.info("******************");
-		BlackjackRule result = BlackjackRound.play(player);
-		switch (result) {
-			case HIT:
-				Card card = deck.dealCard();
-				player.addCard(card);
-				logger.info(player.getName() + " HIT - gets another card: " + card.getRank());
-				playRound(player);
-				break;
-			case STICK:
-				logger.info(player.getName() + " STICKS - doesn't get more cards");
-				break;
-			case GO_BUST:
-				logger.info(player.getName() + " GO_BUST - bye bye");
-				players.remove(player);
-				break;
-			case WIN:
-				logger.info(player.getName() + " HITS 21 and WINNNNS");
-				System.exit(0);
-		}
-		return result;
 	}
 }
