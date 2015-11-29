@@ -50,7 +50,7 @@ public class BlackjackServiceTest {
 		blackjackService.dealInitialCards(3);
 		Player player1 = blackjackService.getPlayers().get(0);
 		blackjackService.playRound(player1);
-		assertTrue(player1.getHand().size() > 2);
+		assertTrue(player1.getHand().size() >= 2);
 	}
 	
 	@Test

@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.runner.notification.RunListener;
 import org.springframework.stereotype.Service;
 
 import codingtest.domain.BlackjackRule;
@@ -35,7 +34,7 @@ public class BlackjackService extends GameService {
 			for (int j = 0; j < 2; j++) {
 				Card card = deck.dealCard();
 				player.addCard(card);
-				logger.info(player.getName() + " gets card " + card.getRank() + "(" + card.getRank().getValue() + ")");
+				logger.info(player.getName() + " gets card " + card.getRank());
 			}
 		}
 	}

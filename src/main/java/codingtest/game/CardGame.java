@@ -36,9 +36,9 @@ public class CardGame {
 	    	context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	    	CardGame game = context.getBean(CardGame.class);
 	    	
-	    	int noPlayers = game.validatePlayers(args.length > 0 ? args[0] : "");
-	    	DeckShuffle shuffleType = game.validateDeck(args.length > 1 ? args[1] : "");
-	    	GameType gameType = game.validateGameType(args.length > 2 ? args[2] : "");
+	    	int noPlayers = InputValidator.validatePlayers(args.length > 0 ? args[0] : "");
+	    	DeckShuffle shuffleType = InputValidator.validateDeck(args.length > 1 ? args[1] : "");
+	    	GameType gameType = InputValidator.validateGameType(args.length > 2 ? args[2] : "");
 	    	
 	    	game.gameFactory.getGame(gameType).playGame(noPlayers, shuffleType);    
     	}
@@ -46,38 +46,4 @@ public class CardGame {
     		((ClassPathXmlApplicationContext)context).close();
     	}
     }
-
-    /************************ VALIDATION ******************************/
-	private int validatePlayers(String noPlayers) {
-    	if (StringUtils.isEmpty(noPlayers)) {
-    		return 3;
-    	}
-    	else {
-    		int numberOfPlayers = Integer.parseInt(noPlayers);
-    		if (numberOfPlayers <= 1 || numberOfPlayers > 6){
-    			throw new InvalidParameterException("You can only have 2 to 6 players.");
-    		}
-    		else {
-    			return numberOfPlayers;
-    		}
-    	}
-    }
-    
-    private DeckShuffle validateDeck(String deck) {
-    	if(EnumUtils.isValidEnum(DeckShuffle.class, deck)) {
-    		return DeckShuffle.valueOf(deck);
-    	}
-    	else {
-    		return DeckShuffle.SHUFFLE;
-    	}
-    }
-    
-    private GameType validateGameType(String game) {
-    	if(EnumUtils.isValidEnum(GameType.class, game)) {
-    		return GameType.valueOf(game);
-    	}
-    	else {
-    		return GameType.BLACKJACK;
-    	}
-	}
 }
